@@ -13,9 +13,8 @@ public class EnemyPool : MonoBehaviour
         for (int i = 0; i < _initialPoolSize; i++)
         {
             Enemy enemy = Instantiate(_enemyPrefab, transform);
-        
+
             enemy.gameObject.SetActive(false);
-            // enemy.OnDeath += ReturnEnemy;
             _pool.Enqueue(enemy);
         }
     }
@@ -23,7 +22,7 @@ public class EnemyPool : MonoBehaviour
     public Enemy GetEnemy()
     {
         Enemy enemy;
-        
+
         if (_pool.Count == 0)
         {
             enemy = Instantiate(_enemyPrefab, transform);
@@ -33,23 +32,11 @@ public class EnemyPool : MonoBehaviour
         {
             enemy = _pool.Dequeue();
         }
-        
-        // enemy.OnDeath -= ReturnEnemy;
+
         enemy.OnDeath += ReturnEnemy;
-        
+
         return enemy;
     }
-
-    // private Enemy CreateNewEnemy()
-    // {
-    //     Enemy enemy = Instantiate(_enemyPrefab, transform);
-    //     
-    //     enemy.gameObject.SetActive(false);
-    //     enemy.OnDeath += ReturnEnemy;
-    //     _pool.Enqueue(enemy);
-    //     
-    //     return enemy;
-    // }
 
     private void ReturnEnemy(Enemy enemy)
     {

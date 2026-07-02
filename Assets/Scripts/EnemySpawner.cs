@@ -11,9 +11,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        // if (_enemyPool == null)
-        //     _enemyPool = FindAnyObjectByType<EnemyPool>();
-        
         _spawnRoutine = StartCoroutine(SpawnRoutine(_spawnInterval));
     }
 
@@ -26,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnRoutine(float spawnInterval)
     {
         var wait = new WaitForSeconds(spawnInterval);
-        
+
         while (enabled)
         {
             yield return wait;
