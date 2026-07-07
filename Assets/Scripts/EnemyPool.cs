@@ -33,14 +33,14 @@ public class EnemyPool : MonoBehaviour
             enemy = _pool.Dequeue();
         }
 
-        enemy.OnDeath += ReturnEnemy;
+        enemy.Death += ReturnEnemy;
 
         return enemy;
     }
 
     private void ReturnEnemy(Enemy enemy)
     {
-        enemy.OnDeath -= ReturnEnemy;
+        enemy.Death -= ReturnEnemy;
         enemy.Deactivate();
         _pool.Enqueue(enemy);
     }

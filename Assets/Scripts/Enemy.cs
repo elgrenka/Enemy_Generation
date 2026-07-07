@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private Vector3 _moveDirection;
     private float _lifeTimer;
 
-    public event Action<Enemy> OnDeath;
+    public event Action<Enemy> Death;
 
     private void Update()
     {
@@ -41,6 +41,6 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        OnDeath?.Invoke(this);
+        Death?.Invoke(this);
     }
 }
